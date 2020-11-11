@@ -1,0 +1,20 @@
+package main
+
+import (
+	"fmt"
+)
+
+func Contains[T comparable](in []T, elem T) bool {
+	for _, val := range in {
+		if val == elem {
+			return true
+		}
+	}
+	return false
+}
+
+
+func main() {
+	fmt.Println(Contains([]string{"foo", "bar"}, "bar"))
+	fmt.Println(Contains([]int{1, 2}, 3))
+}

@@ -1,0 +1,2 @@
+# go-funk-generics
+
