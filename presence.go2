@@ -1,42 +1,30 @@
 package main
 
-type Equaler[T any] interface {
-	Equals(T) bool
-}
+// func Contains[T comparable](in []T, elem T) bool {
+// 	for _, val := range in {
+// 		if val == elem {
+// 			return true
+// 		}
+// 	}
+// 	return false
+// }
 
-func Contains[T comparable](in []T, elem T) bool {
-	for _, val := range in {
-		if val == elem {
-			return true
-		}
-	}
-	return false
-}
+// func ContainsEquals[T Equaler[T]](in []T, elem T) bool {
+// 	for _, val := range in {
+// 		if val.Equals(elem) {
+// 			return true
+// 		}
+// 	}
+// 	return false
+// }
 
-func ContainsEquals[T Equaler[T]](in []T, elem T) bool {
-	for _, val := range in {
-		if val.Equals(elem) {
-			return true
-		}
-	}
-	return false
-}
-
-func MapContains[T1, T2 comparable](in map[T1]T2, elem T2) bool {
-	for _, val := range in {
-		if val == elem {
-			return true
-		}
-	}
-	return false
-}
-
-func MapContainsEquals[T1 comparable, T2 Equaler[T2]](in map[T1]T2, elem T2) bool {
-	for _, val := range in {
-		if val.Equals(elem) {
-			return true
-		}
-	}
-	return false
-}
+// An interface based version would require reflection!
+// func ContainsNormal(in []interface{}, f func(interface{}) bool) bool {
+// 	for _, val := range in {
+// 		if f(val) {
+// 			return true
+// 		}
+// 	}
+// 	return false
+// }
 

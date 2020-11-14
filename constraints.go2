@@ -1,0 +1,5 @@
+package main
+
+type Equaler[T any] interface {
+	Equals(T) bool
+}

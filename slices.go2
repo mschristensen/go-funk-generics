@@ -33,3 +33,12 @@ func Filter[T any](s []T, f func(T) bool) []T {
 	}
 	return r
 }
+
+func Find[T any](s []T, f func(T) bool) *T {
+	for i := range s {
+		if f(s[i]) {
+			return &s[i]
+		}
+	}
+	return nil
+}

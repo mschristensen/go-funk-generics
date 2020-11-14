@@ -1,0 +1,106 @@
+package main
+
+func Contains[T any](in []T, f func(T) bool) bool {
+	for _, val := range in {
+		if f(val) {
+			return true
+		}
+	}
+	return false
+}
+
+func Intersection[T any](a, b []T, f func(T, T) bool) []T {
+	var result []T
+	for i := range a {
+		for j := range b {
+			if f(a[i], b[j]) {
+				result = append(result, a[i])
+				break
+			}
+		}
+	}
+	return result
+}
+
+func Difference[T any](a, b []T, f func(T, T) bool) ([]T, []T) {
+	var resultA []T
+	for i := range a {
+		found := false
+		for j := range b {
+			if f(a[i], b[j]) {
+				found = true
+			}
+		}
+		if !found {
+			resultA = append(resultA, a[i])
+		}
+	}
+	var resultB []T
+	for i := range b {
+		found := false
+		for j := range a {
+			if f(b[i], a[j]) {
+				found = true
+			}
+		}
+		if !found {
+			resultB = append(resultB, b[i])
+		}
+	}
+	return resultA, resultB
+}
+
+func IndexOf[T any](in []T, f func(T) bool) int {
+	for i := range in {
+		if f(in[i]) {
+			return i
+		}
+	}
+	return -1
+}
+
+func LastIndexOf[T any](in []T, f func(T) bool) int {
+	for i := len(in) - 1; i >= 0; i-- {
+		if f(in[i]) {
+			return i
+		}
+	}
+	return -1
+}
+
+func ToMap[T1 any, T2 comparable](in []T1, f func(T1) T2) map[T2]T1 {
+	result := make(map[T2]T1)
+	for i := range in {
+		result[f(in[i])] = in[i]
+	}
+	return result
+}
+
+func Keys[T1 comparable, T2 any](in map[T1]T2) []T1 {
+	var keys []T1
+	for key := range in {
+		keys = append(keys, key)
+	}
+	return keys
+}
+
+func Values[T1 comparable, T2 any](in map[T1]T2) []T2 {
+	var vals []T2
+	for _, val := range in {
+		vals = append(vals, val)
+	}
+	return vals
+}
+
+func ForEach[T any](in []T, f func(T)) {
+	for i := range in {
+		f(in[i])
+	}
+}
+
+func ForEachRight[T any](in []T, f func(T)) {
+	for i := len(in) - 1; i >= 0; i-- {
+		f(in[i])
+	}
+}
+
