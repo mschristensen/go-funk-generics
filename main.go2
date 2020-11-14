@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"time"
+	"math/rand"
 )
 
 type Foo struct {
@@ -70,4 +72,23 @@ func main() {
 	ForEach([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) { fmt.Printf("%d;", i) })
 	fmt.Println()
 	ForEachRight([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) { fmt.Printf("%d;", i) })
+	fmt.Println(Max(5, 3))
+	fmt.Println(Chunk([]int{1,2,3,4,5,6,7,8,9,10}, 3))
+	fmt.Println(Flatten([][]int{
+		[]int{1,2,3,4,5},
+		[]int{6,7,8,9,10},
+	}))
+	fmt.Println(Uniq([]int{1,1,1,1}))
+	fmt.Println(Drop([]int{1,2,3,4}, 2))
+	fmt.Println(Initial([]int{1,2,3,4}))
+	fmt.Println(Tail([]int{1,2,3,4}))
+	fmt.Println(Shuffle([]int{1,2,3,4,5,6,7,8,9,10}))
+	fmt.Println(Subtract([]int{1,2,3,4}, []int{0, 4}, func(a, b int) bool { return a == b }))
+	fmt.Println(Sum(1,2,3,4))
+	fmt.Println(Reverse([]int{1,2,3,4}))
+	fmt.Println(Subset([]int{2,4}, []int{1,2,3,4}, func(a, b int) bool { return a == b }))
+}
+
+func init() {
+	rand.Seed(time.Now().UTC().UnixNano())
 }

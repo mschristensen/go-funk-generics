@@ -1,5 +1,7 @@
 package main
 
+import "math/rand"
+
 func Contains[T any](in []T, f func(T) bool) bool {
 	for _, val := range in {
 		if f(val) {
@@ -76,6 +78,42 @@ func ToMap[T1 any, T2 comparable](in []T1, f func(T1) T2) map[T2]T1 {
 	return result
 }
 
+func Filter[T any](s []T, f func(T) bool) []T {
+	var r []T
+	for _, v := range s {
+		if f(v) {
+			r = append(r, v)
+		}
+	}
+	return r
+}
+
+func Find[T any](s []T, f func(T) bool) *T {
+	for i := range s {
+		if f(s[i]) {
+			return &s[i]
+		}
+	}
+	return nil
+}
+
+
+func Map[T1, T2 any](s []T1, f func(T1) T2) []T2 {
+	r := make([]T2, len(s))
+	for i, v := range s {
+		r[i] = f(v)
+	}
+	return r
+}
+
+func Reduce[T1, T2 any](s []T1, initial T2, f func(T2, T1) T2) T2 {
+	r := initial
+	for _, v := range s {
+		r = f(r, v)
+	}
+	return r
+}
+
 func Keys[T1 comparable, T2 any](in map[T1]T2) []T1 {
 	var keys []T1
 	for key := range in {
@@ -104,3 +142,92 @@ func ForEachRight[T any](in []T, f func(T)) {
 	}
 }
 
+func Chunk[T any](in []T, n int) [][]T {
+	var chunks [][]T
+	for i := 0; i < len(in); i += n {
+		chunks = append(chunks, in[i:Min(i+n, len(in))])
+	}
+	return chunks
+}
+
+// cant do flatten deep without reflection?
+func Flatten[T any](in [][]T) []T {
+	var result []T
+	for i := range in {
+		result = append(result, in[i]...)
+	}
+	return result
+}
+
+// requires type is comparable, should use non-map method for other types
+func Uniq[T comparable](in []T) []T {
+	var result []T
+	seen := make(map[T]struct{}, len(in))
+	for i := range in {
+		if _, ok := seen[in[i]]; ok {
+			continue
+		}
+		seen[in[i]] = struct{}{}
+		result = append(result, in[i])
+	}
+	return result
+}
+
+func Drop[T any](in []T, n int) []T {
+	return in[n:]
+}
+
+func Initial[T any](in []T) []T {
+	return in[:len(in)-1]
+}
+
+func Tail[T any](in []T) []T {
+	return in[1:]
+}
+
+func Shuffle[T any](in []T) []T {
+	result := make([]T, len(in))
+	for i, v := range rand.Perm(len(in)) {
+		result[i] = in[v]
+	}
+	return result
+}
+
+func Subtract[T any](a, b []T, f func(T, T) bool) []T {
+	var result []T
+	for i := range a {
+		found := false
+		for j := range b {
+			if f(a[i], b[j]) {
+				found = true
+			}
+		}
+		if !found {
+			result = append(result, a[i])
+		}
+	}
+	return result
+}
+
+func Reverse[T any](in []T) []T {
+	var result []T
+	for i := len(in) - 1; i >= 0; i-- {
+		result = append(result, in[i])
+	}
+	return result
+}
+
+func Subset[T any](a, b []T, f func(T, T) bool) bool {
+	for i := range a {
+		found := false
+		for j := range b {
+			if f(a[i], b[j]) {
+				found = true
+			}
+		}
+		if !found {
+			return false
+		}
+	}
+	return true
+}

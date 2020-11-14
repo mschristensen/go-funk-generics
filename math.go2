@@ -1,0 +1,35 @@
+package main
+
+func Max[T Ordered](a T, b ...T) T {
+	max := a
+	if len(b) < 1 {
+		return max
+	}
+	for _, v := range b {
+		if v > max {
+			max = v
+		}
+	}
+	return max
+}
+
+func Min[T Ordered](a T, b ...T) T {
+	min := a
+	if len(b) < 1 {
+		return min
+	}
+	for _, v := range b {
+		if v < min {
+			min = v
+		}
+	}
+	return min
+}
+
+func Sum[T Number](n ...T) T {
+	sum := T(0)
+	for i := range n {
+		sum += n[i]
+	}
+	return sum
+}
