@@ -2,19 +2,54 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
-func Contains[T comparable](in []T, elem T) bool {
-	for _, val := range in {
-		if val == elem {
-			return true
-		}
-	}
-	return false
+type Foo struct {
+	Bar string
 }
 
+func (f *Foo) Equals(g *Foo) bool {
+	return f != nil && g != nil && f.Bar == g.Bar
+}
 
 func main() {
-	fmt.Println(Contains([]string{"foo", "bar"}, "bar"))
-	fmt.Println(Contains([]int{1, 2}, 3))
+	var l List[int]
+	x := Mappable[string, string](
+		Mappable[int, string](
+			l.Append(1,2,3,4,5,6,7,8,9,10).
+			Filter(func(i int) bool {
+				return i % 2 == 0
+			}),
+		).Map(strconv.Itoa),
+	).Reduce("", func (prev, cur string) string {
+		return prev + cur + ";"
+	})
+	fmt.Println(x)
+
+	x1 := Filter[int]([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) bool {
+		return i % 2 == 0
+	})
+	x2 := Map[int, string](x1, strconv.Itoa)
+	x3 := Reduce[string, string](x2, "", func (prev, cur string) string {
+		return prev + cur + ";"
+	})
+	fmt.Println(x3)
+
+	fmt.Println(Contains([]int{1,2,3}, 3))
+	fmt.Println(ContainsEquals([]*Foo{
+		{ Bar: "one" },
+		{ Bar: "two" },
+		{ Bar: "three" },
+	}, &Foo{ Bar: "three" }))
+	fmt.Println(MapContains(map[string]int{
+		"one": 1,
+		"two": 2,
+		"three": 3,
+	}, 3))
+	fmt.Println(MapContainsEquals(map[string]*Foo{
+		"one": &Foo{ Bar: "one" },
+		"two": &Foo{ Bar: "two" },
+		"three": &Foo{ Bar: "three" },
+	}, &Foo{ Bar: "three" }))
 }

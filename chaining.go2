@@ -1,0 +1,21 @@
+package main
+
+type List[T any] []T
+
+func (l List[T]) Append(e ...T) List[T] {
+	return append(l, e...)
+}
+
+func (l List[T]) Filter(f func(T) bool) List[T] {
+	return Filter(l, f)
+}
+
+type Mappable[T1, T2 any] List[T1]
+
+func (m Mappable[T1, T2]) Map(f func(T1) T2) List[T2] { // Mappable[T1, T2] { cant do this as we dont know the types we want to map to! only the caller does
+	return Map[T1, T2](m, f)
+}
+
+func (m Mappable[T1, T2]) Reduce(initializer T2, f func(T2, T1) T2) T2 {
+	return Reduce[T1, T2](m, initializer, f)
+}
