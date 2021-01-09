@@ -2,7 +2,7 @@
 
 An example utility library, inspired by [`go-funk`](https://github.com/thoas/go-funk), implemented using the proposed generics syntax from the latest Go 2 [design draft](https://go.googlesource.com/proposal/+/refs/heads/master/design/go2draft-type-parameters.md).
 
-For more detail, please read the associated [blog post]().
+For more detail, please read the associated [blog post](https://christensen.codes/Exploring-Generic-Types-in-Go-2.0).
 
 The following functions have been implemented:
 
