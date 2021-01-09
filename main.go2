@@ -42,51 +42,51 @@ func main() {
 	})
 	fmt.Println(x3)
 
-	fmt.Println(Contains([]int{1,2,3}, func(i int) bool { return i == 3 }))
-	fmt.Println(Intersection([]int{1,2,3}, []int{2,3,4}, func(a, b int) bool { return a == b }))
-	fmt.Println(Difference([]int{1,2,3,4},[]int{2,4,6}, func(a, b int) bool { return a == b }))
-	fmt.Println(IndexOf([]int{1,2,3}, func(i int) bool { return i == 3 }))
-	fmt.Println(LastIndexOf([]int{1,2,3,2,1}, func(i int) bool { return i == 2 }))
-	fmt.Println(ToMap([]*Foo{
-		{ Bar: "one" },
-		{ Bar: "two" },
-		{ Bar: "three" },
-	}, func(f *Foo) string { return f.Bar }))
-	fmt.Println(Filter([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) bool {
-		return i % 2 == 0
-	}))
-	fmt.Println(*Find([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) bool {
-		return i == 7
-	}))
-	fmt.Println(Map([]int{1,2,3,4,5,6,7,8,9,10}, strconv.Itoa))
-	fmt.Println(Keys(map[string]int{
-		"one": 1,
-		"two": 2,
-		"three": 3,
-	}))
-	fmt.Println(Values(map[string]int{
-		"one": 1,
-		"two": 2,
-		"three": 3,
-	}))
-	ForEach([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) { fmt.Printf("%d;", i) })
-	fmt.Println()
-	ForEachRight([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) { fmt.Printf("%d;", i) })
-	fmt.Println(Max(5, 3))
-	fmt.Println(Chunk([]int{1,2,3,4,5,6,7,8,9,10}, 3))
-	fmt.Println(Flatten([][]int{
-		[]int{1,2,3,4,5},
-		[]int{6,7,8,9,10},
-	}))
-	fmt.Println(Uniq([]int{1,1,1,1}))
-	fmt.Println(Drop([]int{1,2,3,4}, 2))
-	fmt.Println(Initial([]int{1,2,3,4}))
-	fmt.Println(Tail([]int{1,2,3,4}))
-	fmt.Println(Shuffle([]int{1,2,3,4,5,6,7,8,9,10}))
-	fmt.Println(Subtract([]int{1,2,3,4}, []int{0, 4}, func(a, b int) bool { return a == b }))
-	fmt.Println(Sum(1,2,3,4))
-	fmt.Println(Reverse([]int{1,2,3,4}))
-	fmt.Println(Subset([]int{2,4}, []int{1,2,3,4}, func(a, b int) bool { return a == b }))
+	// fmt.Println(Contains([]int{1,2,3}, func(i int) bool { return i == 3 }))
+	// fmt.Println(Intersection([]int{1,2,3}, []int{2,3,4}, func(a, b int) bool { return a == b }))
+	// fmt.Println(Difference([]int{1,2,3,4},[]int{2,4,6}, func(a, b int) bool { return a == b }))
+	// fmt.Println(IndexOf([]int{1,2,3}, func(i int) bool { return i == 3 }))
+	// fmt.Println(LastIndexOf([]int{1,2,3,2,1}, func(i int) bool { return i == 2 }))
+	// fmt.Println(ToMap([]*Foo{
+	// 	{ Bar: "one" },
+	// 	{ Bar: "two" },
+	// 	{ Bar: "three" },
+	// }, func(f *Foo) string { return f.Bar }))
+	// fmt.Println(Filter([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) bool {
+	// 	return i % 2 == 0
+	// }))
+	// fmt.Println(*Find([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) bool {
+	// 	return i == 7
+	// }))
+	// fmt.Println(Map([]int{1,2,3,4,5,6,7,8,9,10}, strconv.Itoa))
+	// fmt.Println(Keys(map[string]int{
+	// 	"one": 1,
+	// 	"two": 2,
+	// 	"three": 3,
+	// }))
+	// fmt.Println(Values(map[string]int{
+	// 	"one": 1,
+	// 	"two": 2,
+	// 	"three": 3,
+	// }))
+	// ForEach([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) { fmt.Printf("%d;", i) })
+	// fmt.Println()
+	// ForEachRight([]int{1,2,3,4,5,6,7,8,9,10}, func(i int) { fmt.Printf("%d;", i) })
+	// fmt.Println(Max(5, 3))
+	// fmt.Println(Chunk([]int{1,2,3,4,5,6,7,8,9,10}, 3))
+	// fmt.Println(Flatten([][]int{
+	// 	[]int{1,2,3,4,5},
+	// 	[]int{6,7,8,9,10},
+	// }))
+	// fmt.Println(Uniq([]int{1,1,1,1}))
+	// fmt.Println(Drop([]int{1,2,3,4}, 2))
+	// fmt.Println(Initial([]int{1,2,3,4}))
+	// fmt.Println(Tail([]int{1,2,3,4}))
+	// fmt.Println(Shuffle([]int{1,2,3,4,5,6,7,8,9,10}))
+	// fmt.Println(Subtract([]int{1,2,3,4}, []int{0, 4}, func(a, b int) bool { return a == b }))
+	// fmt.Println(Sum(1,2,3,4))
+	// fmt.Println(Reverse([]int{1,2,3,4}))
+	// fmt.Println(Subset([]int{2,4}, []int{1,2,3,4}, func(a, b int) bool { return a == b }))
 }
 
 func init() {
